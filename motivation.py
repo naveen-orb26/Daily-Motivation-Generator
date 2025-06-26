@@ -5,7 +5,7 @@ import os
 import requests
 import re
 
-# Load API Key and Project ID from .env
+# Loading API Key and Project ID from .env
 load_dotenv()
 
 API_KEY = os.getenv('IBM_API_KEY')
@@ -38,12 +38,12 @@ def generate_motivation():
     root.update()
 
     if not user_text:
-        result_label.config(text="❗ Please describe how you're feeling.")
+        result_label.config(text=" Please describe how you're feeling.")
         return
 
     token = get_iam_token(API_KEY)
     if not token:
-        result_label.config(text="❌ Failed to get IBM Token. Check API key or Internet.")
+        result_label.config(text="Failed to get IBM Token. Check API key or Internet.")
         return
 
     url = f"https://{REGION}.ml.cloud.ibm.com/ml/v1/text/generation?version=2024-06-01"
@@ -86,7 +86,7 @@ def copy_to_clipboard():
     root.clipboard_append(motivation)
     messagebox.showinfo("Copied!", "Motivation copied to clipboard!")
 
-# ==== Tkinter GUI ====
+
 root = tk.Tk()
 root.title("✨ AI Daily Motivator ✨")
 root.geometry("700x600")
